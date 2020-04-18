@@ -1,3 +1,8 @@
 .dropdown {
     display: inherit;
 }
+
+a.dropdown-item.is-active {
+    background-color: whitesmoke;
+    color: #0a0a0a;
+}

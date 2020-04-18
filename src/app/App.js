@@ -8,6 +8,7 @@ import Start from '../pages/start/Start'
 import Timer from '../pages/timer/Timer'
 
 function App() {
+
   return (
     <Router>
       <Switch>
