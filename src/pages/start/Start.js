@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import TagInput from '../../common/TagInput/TagInput'
+import TagSearch from '../../common/TagSearch/TagSearch'
 
 export const Start = () => {
     return (
@@ -9,7 +9,7 @@ export const Start = () => {
             <div className="section">
                 <div className="columns">
                     <div className="column">
-                        <TagInput></TagInput>
+                        <TagSearch></TagSearch>
                     </div>
                     <div className="column">
 

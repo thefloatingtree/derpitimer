@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import testSlice from './slices/testSlice'
+import startSlice from './slices/startSlice'
 
 export default combineReducers({ 
-    test: testSlice.reducer 
+    start: startSlice.reducer 
 })
