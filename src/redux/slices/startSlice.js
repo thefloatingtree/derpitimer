@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { setTags } from '../actions'
+import { setTags, addTag } from '../actions'
 import { fetchTagSuggestionsByQueryAsync } from '../thunks'
 
 const initialState = {
