@@ -23,8 +23,10 @@ export const renderSuggestion = (suggestion, { isHighlighted }) => (
 )
 
 export const renderInputComponent = (inputProps, isLoading) => (
-    <div className={classnames("control", { ["is-loading"]: isLoading })}>
-        <input {...inputProps} className="input" maxLength="40" />
+    <div class="field">
+        <div className={classnames("control", { ["is-loading"]: isLoading })}>
+            <input {...inputProps} className="input" maxLength="40" />
+        </div>
     </div>
 )
 

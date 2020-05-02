@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import TagSearch from '../../common/TagSearch/TagSearch'
-
+import TagDisplay from '../../common/TagDisplay/TagDisplay'
 
 
 export const Start = () => {
@@ -12,8 +12,10 @@ export const Start = () => {
                 <div className="columns">
                     <div className="column">
                         <TagSearch></TagSearch>
+                        <TagDisplay></TagDisplay>
                     </div>
                     <div className="column">
+
                     </div>
                 </div>
             </div>
