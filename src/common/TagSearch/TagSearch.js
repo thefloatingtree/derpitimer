@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchTagSuggestionsByQueryAsync } from '../../redux/thunks'
+import { addTag } from '../../redux/actions'
 import Autosuggest from 'react-autosuggest'
 import {
     getSuggestionValue,
@@ -10,7 +11,7 @@ import {
 } from './TagSearchUtil'
 import fuzzysort from 'fuzzysort'
 
-function TagSearch({ tagSuggestions, tagSuggestionsPending, fetchTagSuggestionsByQueryAsync }) {
+function TagSearch({ tagSuggestions, tagSuggestionsPending, fetchTagSuggestionsByQueryAsync, addTag }) {
     const [transformedTagSuggestions, setTransformedTagSuggestions] = useState(tagSuggestions)
     const [value, setValue] = useState('')
     const [exitedTagSuggestionsFetchEarly, setExitedTagSuggestionsFetchEarly] = useState(false)
@@ -55,6 +56,7 @@ function TagSearch({ tagSuggestions, tagSuggestionsPending, fetchTagSuggestionsB
 
     const onSuggestionSelected = event => {
         event.preventDefault()
+        addTag(value)
         setValue("")
     }
     
@@ -90,4 +92,4 @@ const mapStateToProps = state => ({
     tagSuggestionsPending: state.start.tagSuggestionsPending
 })
 
-export default connect(mapStateToProps, { fetchTagSuggestionsByQueryAsync })(TagSearch)
+export default connect(mapStateToProps, { fetchTagSuggestionsByQueryAsync, addTag })(TagSearch)

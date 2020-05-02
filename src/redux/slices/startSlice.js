@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { setTags, addTag } from '../actions'
 import { fetchTagSuggestionsByQueryAsync } from '../thunks'
 
 const initialState = {
@@ -12,11 +11,14 @@ export default createSlice({
     name: 'start',
     initialState,
     reducers: {
-        [setTags]: (state, action) => {
-            state.tags = action.payload
+        addTag: (state, action) => {
+            // Unique push
+            if (state.tags.indexOf(action.payload) === -1) {
+                state.tags.push(action.payload)
+            }
         },
-        [addTag]: (state, action) => {
-            state.tags.push(action.payload)
+        removeTag: (state, action) => {
+            state.tags = state.tags.filter(value => value !== action.payload)
         }
     },
     extraReducers: {

@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import TagSearch from '../../common/TagSearch/TagSearch'
 
+
+
 export const Start = () => {
     return (
         <div className="container">
@@ -12,7 +14,6 @@ export const Start = () => {
                         <TagSearch></TagSearch>
                     </div>
                     <div className="column">
-
                     </div>
                 </div>
             </div>

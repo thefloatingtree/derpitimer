@@ -2,10 +2,24 @@ import React from 'react'
 import './TagSearch.scss'
 import classnames from 'classnames'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
 export const getSuggestionValue = suggestion => suggestion.name;
 
 export const renderSuggestion = (suggestion, { isHighlighted }) => (
-    <a href="/" className={classnames("dropdown-item", { ["is-active"]: isHighlighted })}>{suggestion.name}</a>
+    <a href="/" className={classnames("dropdown-item", { ["is-active"]: isHighlighted })}>
+        <div className="field is-grouped">
+            <div className="control">
+                <span className="icon">
+                    <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
+                </span>
+            </div>
+            <div className="control">
+                {suggestion.name}
+            </div>
+        </div>
+    </a>
 )
 
 export const renderInputComponent = (inputProps, isLoading) => (
