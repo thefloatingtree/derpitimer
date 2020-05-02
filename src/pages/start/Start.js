@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import TagSearch from '../../common/TagSearch/TagSearch'
 import TagDisplay from '../../common/TagDisplay/TagDisplay'
-
+import TagGroupDisplay from '../../common/TagGroupDisplay/TagGroupDisplay'
 
 export const Start = () => {
     return (
@@ -13,6 +13,7 @@ export const Start = () => {
                     <div className="column">
                         <TagSearch></TagSearch>
                         <TagDisplay></TagDisplay>
+                        <TagGroupDisplay></TagGroupDisplay>
                     </div>
                     <div className="column">
 
