@@ -16,7 +16,7 @@ function TagSearch({ tagSuggestions, tagSuggestionsPending, fetchTagSuggestionsB
     const [exitedTagSuggestionsFetchEarly, setExitedTagSuggestionsFetchEarly] = useState(false)
     const [lastValueChangeMethod, setLastValueChangeMethod] = useState('')
     const [timeLastTyped, setTimeLastTyped] = useState(Date.now())
-    const [inputFocused, setInputFocused] = useState(false);
+    const [inputFocused, setInputFocused] = useState(true);
 
 
     useEffect(() => {
