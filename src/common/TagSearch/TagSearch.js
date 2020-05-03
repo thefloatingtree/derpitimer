@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchTagSuggestionsByQueryAsync } from '../../redux/thunks'
-import { addTag } from '../../redux/actions'
+import { fetchTagSuggestionsByQueryAsync } from '../../redux/slices/start/startThunks'
+import { addTag } from '../../redux/slices/start/startActions'
 import tagFactory from '../../redux/factories/TagFactory'
 import Autosuggest from 'react-autosuggest'
 import {

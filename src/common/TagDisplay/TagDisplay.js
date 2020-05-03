@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { removeTag, setTags } from '../../redux/actions'
+import { removeTag, setTags } from '../../redux/slices/start/startActions'
+import { activateStartCreateTagGroup } from '../../redux/slices/modal/modalActions'
 import tagFactory from '../../redux/factories/TagFactory'
 import './TagDisplay.scss'
 import classnames from 'classnames'
@@ -8,7 +9,7 @@ import classnames from 'classnames'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-function TagDisplay({ tags, removeTag, setTags }) {
+function TagDisplay({ tags, removeTag, setTags, activateStartCreateTagGroup }) {
 
     // Event for the whole tag, including the delete button
     const onTagClick = (item, event) => {
@@ -38,7 +39,7 @@ function TagDisplay({ tags, removeTag, setTags }) {
                 )
             })}
             {!!tags.length &&
-                <div className="tag tag-button">
+                <div onClick={() => {activateStartCreateTagGroup(true)}} className="tag tag-button">
                     <span className="icon">
                         <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
                     </span>
@@ -53,4 +54,4 @@ const mapStateToProps = state => ({
     tags: state.start.tags,
 })
 
-export default connect(mapStateToProps, { removeTag, setTags })(TagDisplay)
+export default connect(mapStateToProps, { removeTag, setTags, activateStartCreateTagGroup })(TagDisplay)

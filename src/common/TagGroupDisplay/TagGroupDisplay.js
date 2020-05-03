@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { setTags, addTag, setTagGroups, removeTagGroup } from '../../redux/actions'
+import { setTags, addTag, removeTagGroup } from '../../redux/slices/start/startActions'
 import classnames from 'classnames'
 import StackGrid from "react-stack-grid";
 import useWindowDimensions from '../hooks/UseWindowDimensions'
@@ -8,9 +8,9 @@ import useWindowDimensions from '../hooks/UseWindowDimensions'
 import './TagGroupDisplay.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faPlus, faBan } from '@fortawesome/free-solid-svg-icons'
 
-function TagGroupDisplay({ tagGroups, tags, setTags, addTag, setTagGroups, removeTagGroup }) {
+function TagGroupDisplay({ tagGroups, tags, setTags, addTag, removeTagGroup }) {
     const [tagGroupDeleteAreYouSure, setTagGroupDeleteAreYouSure] = useState(null)
     const [tagGroupAddOrReplace, setTagGroupAddOrReplace] = useState(null)
     const { width } = useWindowDimensions();
@@ -27,47 +27,56 @@ function TagGroupDisplay({ tagGroups, tags, setTags, addTag, setTagGroups, remov
     }
 
     const onSetTagsClick = group => {
+        resetPrompts()
         if (!tags.length) {
             setTags(group.tags)
-            setTagGroupAddOrReplace(null);
         } else {
             setTagGroupAddOrReplace(group);
         }
     }
 
     const onDeleteTagGroupClick = group => {
+        resetPrompts()
         setTagGroupDeleteAreYouSure(group)
     }
 
     return (
         <div className="container">
-            <StackGrid columnWidth={width < 500 || (width > 768 && width < 1024) ? "100%" : "50%"}>
+            <StackGrid columnWidth={width < 1415 ? "100%" : "50%"}>
                 {tagGroups.map(group => {
                     return (
                         <div className="box">
-                            <div className={classnames("tab-group-overlay", "hideable", {["hide"]: !(tagGroupAddOrReplace?.name === group.name)})}>
-                                <div className="absolute-center">
-                                    <div className="title is-5">Tags already exist</div>
-                                    <div className="buttons is-grouped">
-                                        <div onClick={() => {resetPrompts(); setTags(group.tags)}} className="button">Replace</div>
-                                        <div onClick={() => {resetPrompts(); addTags(group)}} className="button is-primary">Add</div>
+                            {tagGroupAddOrReplace &&
+                                <div className={classnames("tab-group-overlay", "hideable", { ["hide"]: !(tagGroupAddOrReplace?.name === group.name) })}>
+                                    <div className="absolute-center">
+                                        <div className="title is-5">Tags already exist</div>
+                                        <div className="buttons is-grouped">
+                                            <div onClick={() => resetPrompts()} className="button">Cancel</div>
+                                            <div onClick={() => { resetPrompts(); setTags(group.tags) }} className="button">Replace</div>
+                                            <div onClick={() => { resetPrompts(); addTags(group) }} className="button is-primary">Add</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className={classnames("tab-group-overlay", "hideable", {["hide"]: !(tagGroupDeleteAreYouSure?.name === group.name)})}>
-                                <div className="absolute-center">
-                                    <div className="title is-5">Are you sure?</div>
-                                    <div className="buttons is-grouped">
-                                        <div onClick={() => {resetPrompts(); removeTagGroup(group)}} className="button is-danger">Delete</div>
-                                        <div onClick={() => resetPrompts()} className="button">Cancel</div>
+                            }
+                            {tagGroupDeleteAreYouSure &&
+                                <div className={classnames("tab-group-overlay", "hideable", { ["hide"]: !(tagGroupDeleteAreYouSure?.name === group.name) })}>
+                                    <div className="absolute-center">
+                                        <div className="title is-5">Are you sure?</div>
+                                        <div className="buttons is-grouped">
+                                            <div onClick={() => { resetPrompts(); removeTagGroup(group) }} className="button is-danger">Delete</div>
+                                            <div onClick={() => resetPrompts()} className="button">Cancel</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className={classnames("hideable", {["hide"]: tagGroupDeleteAreYouSure?.name === group.name || tagGroupAddOrReplace?.name === group.name})}>
+                            }
+                            <div className={classnames("hideable", { ["hide"]: tagGroupDeleteAreYouSure?.name === group.name || tagGroupAddOrReplace?.name === group.name })}>
                                 <div className="columns is-mobile">
                                     <div className="column">
                                         <div className="title is-5">
                                             {group.name}
+                                        </div>
+                                        <div className="subtitle is-6">
+                                            {group.tags.length} Tag{group.tags.length > 1 ? "s" : ""}
                                         </div>
                                         <div className="tags">
                                             {group.tags.map(tag => {
@@ -109,4 +118,4 @@ const mapStateToProps = state => ({
     tags: state.start.tags,
 })
 
-export default connect(mapStateToProps, { setTags, addTag, setTagGroups, removeTagGroup })(TagGroupDisplay)
+export default connect(mapStateToProps, { setTags, addTag, removeTagGroup })(TagGroupDisplay)

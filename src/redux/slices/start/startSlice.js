@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { fetchTagSuggestionsByQueryAsync } from '../thunks'
+import { fetchTagSuggestionsByQueryAsync } from './startThunks'
 
-import TagGroupFactory from '../factories/TagGroupFactory'
-import TagFactory from '../factories/TagFactory'
+import TagGroupFactory from '../../factories/TagGroupFactory'
+import TagFactory from '../../factories/TagFactory'
 
 const initialState = {
     tags: [],
@@ -12,7 +12,6 @@ const initialState = {
         TagGroupFactory("Just Twilight 1", [TagFactory("ts"), TagFactory("solo", true)], 0),
         TagGroupFactory("Just Twilight 2", [TagFactory("ts"), TagFactory("solo", true)], 1),
         TagGroupFactory("Just Twilight 3", [TagFactory("ts"), TagFactory("solo", true)], 2),
-        TagGroupFactory("Just Twilight 3 asdfa asdfjlk askdfjlakjsdflkj asdkjfaksjdf", [TagFactory("ts"), TagFactory("solo", true)], 3),
     ],
     isTagGroupCreateModalOpen: false,
 }

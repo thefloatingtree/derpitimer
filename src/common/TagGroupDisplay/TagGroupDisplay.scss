@@ -8,10 +8,10 @@ div.level-left.custom-level-left {
 
 .hideable {
     z-index: 2;
-    transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.1s linear;
 }
 
-.hideable.hide {
+.hide {
     z-index: 0;
     opacity: 0;
 }
@@ -19,4 +19,6 @@ div.level-left.custom-level-left {
 .tab-group-overlay {
     position: absolute;
     z-index: 1;
+    background-color: white;
+    padding-bottom: 5%;
 }
