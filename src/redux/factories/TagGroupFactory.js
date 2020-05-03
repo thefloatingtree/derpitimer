@@ -1,7 +1,8 @@
 
-export default function TagGroupFactory (name, tags) {
+export default function TagGroupFactory (name, tags, id) {
     return {
         name,
-        tags
+        tags,
+        id
     }
 }

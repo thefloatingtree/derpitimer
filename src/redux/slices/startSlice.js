@@ -9,8 +9,12 @@ const initialState = {
     tagSuggestions: [],
     tagSuggestionsPending: false,
     tagGroups: [
-        TagGroupFactory("Just Twilight", [TagFactory("ts"), TagFactory("solo", true)])
+        TagGroupFactory("Just Twilight 1", [TagFactory("ts"), TagFactory("solo", true)], 0),
+        TagGroupFactory("Just Twilight 2", [TagFactory("ts"), TagFactory("solo", true)], 1),
+        TagGroupFactory("Just Twilight 3", [TagFactory("ts"), TagFactory("solo", true)], 2),
+        TagGroupFactory("Just Twilight 3 asdfa asdfjlk askdfjlakjsdflkj asdkjfaksjdf", [TagFactory("ts"), TagFactory("solo", true)], 3),
     ],
+    isTagGroupCreateModalOpen: false,
 }
 
 export default createSlice({
@@ -22,12 +26,21 @@ export default createSlice({
         },
         addTag: (state, action) => {
             // Unique push
-            if (state.tags.indexOf(action.payload) === -1) {
+            if (!state.tags.some(tag => tag.name === action.payload.name)) {
                 state.tags.push(action.payload)
             }
         },
         removeTag: (state, action) => {
             state.tags = state.tags.filter(value => value.name !== action.payload)
+        },
+        setTagGroups: (state, action) => {
+            state.tagGroups = action.payload
+        },
+        addTagGroup: (state, action) => {
+            state.tagGroups.push(TagGroupFactory(action.payload.name, action.payload.tags, state.tagGroups.length))
+        },
+        removeTagGroup: (state, action) => {
+            state.tagGroups = state.tagGroups.filter(value => value.id !== action.payload.id)
         }
     },
     extraReducers: {

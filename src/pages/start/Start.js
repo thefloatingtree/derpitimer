@@ -9,14 +9,17 @@ export const Start = () => {
     return (
         <div className="container">
             <div className="section">
+                <div className="title">Derpitimer</div>
                 <div className="columns">
                     <div className="column">
+                        <div className="title is-4">Tags</div>
                         <TagSearch></TagSearch>
                         <TagDisplay></TagDisplay>
+                        <div className="title is-4">Tag Groups</div>
                         <TagGroupDisplay></TagGroupDisplay>
                     </div>
                     <div className="column">
-
+                        <div className="title is-4">Preview</div>
                     </div>
                 </div>
             </div>

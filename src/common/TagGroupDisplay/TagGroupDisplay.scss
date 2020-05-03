@@ -1,0 +1,22 @@
+div.level.custom-level-margin {
+    margin-bottom: 6px;
+}
+
+div.level-left.custom-level-left {
+    width: 80%;
+}
+
+.hideable {
+    z-index: 2;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.hideable.hide {
+    z-index: 0;
+    opacity: 0;
+}
+
+.tab-group-overlay {
+    position: absolute;
+    z-index: 1;
+}
