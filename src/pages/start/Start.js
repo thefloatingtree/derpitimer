@@ -7,6 +7,8 @@ import TagGroupDisplay from '../../common/TagGroupDisplay/TagGroupDisplay'
 import ImagePreview from '../../common/ImagePreview/ImagePreview'
 import Settings from '../../common/Settings/Settings'
 
+import UpdateTagGroupCookie from '../../common/renderless/UpdateTagGroupCookie'
+
 import CreateTagGroupModal from '../../common/modals/CreateTagGroupModal'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -18,6 +20,9 @@ export const Start = () => {
 
     return (
         <>
+            {/* Renderless */}
+            <UpdateTagGroupCookie></UpdateTagGroupCookie>
+            {/* Modals */}
             <CreateTagGroupModal></CreateTagGroupModal>
             <div className="container">
                 <div className="section">

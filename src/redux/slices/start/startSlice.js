@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import { fetchTagSuggestionsByQueryAsync, fetchImagesByTagsAsync } from './startThunks'
 
 import TagGroupFactory from '../../factories/TagGroupFactory'
-import TagFactory from '../../factories/TagFactory'
 
 const initialState = {
     tags: [],
@@ -10,9 +9,7 @@ const initialState = {
     tagSuggestionsPending: false,
     imagePreviews: [],
     imagePreviewsPending: false,
-    tagGroups: [
-        TagGroupFactory("Just Twilight", [TagFactory("ts"), TagFactory("solo"), TagFactory("safe"), TagFactory("pony"), TagFactory("animated", true)], 0)
-    ],
+    tagGroups: [],
     isTagGroupCreateModalOpen: false,
 }
 
@@ -36,7 +33,7 @@ export default createSlice({
             state.tagGroups = action.payload
         },
         addTagGroup: (state, action) => {
-            state.tagGroups.push(TagGroupFactory(action.payload.name, action.payload.tags, state.tagGroups.length))
+            state.tagGroups.push(TagGroupFactory(action.payload.name, action.payload.tags, state.tagGroups.length, "Custom"))
         },
         removeTagGroup: (state, action) => {
             state.tagGroups = state.tagGroups.filter(value => value.id !== action.payload.id)

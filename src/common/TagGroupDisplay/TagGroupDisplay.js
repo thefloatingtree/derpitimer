@@ -43,14 +43,14 @@ function TagGroupDisplay({ tagGroups, tags, setTags, addTag, removeTagGroup }) {
     return (
         <div className="container">
             {!tagGroups.length && 
-                <div className="subtitle has-text-grey">You don't have any tag groups, search for some tags and make one.</div>
+                <div className="subtitle has-text-grey">You don't have any tag groups</div>
             }
             <StackGrid columnWidth={width < 1415 || tagGroups.length === 1 ? "100%" : "50%"}>
                 {tagGroups.map(group => {
                     return (
                         <div className="box">
                             {tagGroupAddOrReplace &&
-                                <div className={classnames("tab-group-overlay", "hideable", { ["hide"]: !(tagGroupAddOrReplace?.name === group.name) })}>
+                                <div className={classnames("tab-group-overlay", "hideable", { "hide": !(tagGroupAddOrReplace?.name === group.name) })}>
                                     <div className="absolute-center">
                                         <div className="title is-5">Tags already exist</div>
                                         <div className="buttons is-grouped">

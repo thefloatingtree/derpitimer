@@ -8,7 +8,6 @@ import DerpiURLFactory from '../../redux/factories/DerpiURLFactory'
 
 function ImagePreview({ imagePreviews }) {
     const [grid, setGrid] = useState(null)
-    const colWidth = 150
 
     // fix layout bugs when imagePreviews change
     useEffect(() => {
@@ -16,7 +15,7 @@ function ImagePreview({ imagePreviews }) {
     }, [grid, imagePreviews])
 
     return (
-        <StackGrid columnWidth={colWidth} gridRef={gridRef => setGrid(gridRef)} monitorImagesLoaded>
+        <StackGrid columnWidth={150} gridRef={gridRef => setGrid(gridRef)} monitorImagesLoaded>
             {imagePreviews.map((image) => {
                 return (
                     <a key={image.sha512_hash} href={DerpiURLFactory(image.id)} target="_blank">
