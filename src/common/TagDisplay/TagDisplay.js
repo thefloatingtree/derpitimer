@@ -7,7 +7,7 @@ import './TagDisplay.scss'
 import classnames from 'classnames'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 function TagDisplay({ tags, removeTag, setTags, activateStartCreateTagGroup }) {
 
@@ -39,11 +39,19 @@ function TagDisplay({ tags, removeTag, setTags, activateStartCreateTagGroup }) {
                 )
             })}
             {!!tags.length &&
-                <div onClick={() => {activateStartCreateTagGroup(true)}} className="tag tag-button">
+                <div onClick={() => { activateStartCreateTagGroup(true) }} className="tag tag-button">
                     <span className="icon">
                         <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
                     </span>
                     <span>Group These Tags</span>
+                </div>
+            }
+            {!!tags.length &&
+                <div onClick={() => { setTags([]) }} className="tag tag-button">
+                    <span className="icon">
+                        <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
+                    </span>
+                    <span>Clear All Tags</span>
                 </div>
             }
         </div>

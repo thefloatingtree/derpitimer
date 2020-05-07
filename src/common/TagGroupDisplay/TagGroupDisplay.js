@@ -8,7 +8,7 @@ import useWindowDimensions from '../hooks/UseWindowDimensions'
 import './TagGroupDisplay.scss'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faPlus, faBan } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faPlus } from '@fortawesome/free-solid-svg-icons'
 
 function TagGroupDisplay({ tagGroups, tags, setTags, addTag, removeTagGroup }) {
     const [tagGroupDeleteAreYouSure, setTagGroupDeleteAreYouSure] = useState(null)
@@ -42,7 +42,10 @@ function TagGroupDisplay({ tagGroups, tags, setTags, addTag, removeTagGroup }) {
 
     return (
         <div className="container">
-            <StackGrid columnWidth={width < 1415 ? "100%" : "50%"}>
+            {!tagGroups.length && 
+                <div className="subtitle has-text-grey">You don't have any tag groups, search for some tags and make one.</div>
+            }
+            <StackGrid columnWidth={width < 1415 || tagGroups.length === 1 ? "100%" : "50%"}>
                 {tagGroups.map(group => {
                     return (
                         <div className="box">

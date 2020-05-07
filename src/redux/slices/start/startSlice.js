@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { fetchTagSuggestionsByQueryAsync } from './startThunks'
+import { fetchTagSuggestionsByQueryAsync, fetchImagesByTagsAsync } from './startThunks'
 
 import TagGroupFactory from '../../factories/TagGroupFactory'
 import TagFactory from '../../factories/TagFactory'
@@ -8,10 +8,10 @@ const initialState = {
     tags: [],
     tagSuggestions: [],
     tagSuggestionsPending: false,
+    imagePreviews: [],
+    imagePreviewsPending: false,
     tagGroups: [
-        TagGroupFactory("Just Twilight 1", [TagFactory("ts"), TagFactory("solo", true)], 0),
-        TagGroupFactory("Just Twilight 2", [TagFactory("ts"), TagFactory("solo", true)], 1),
-        TagGroupFactory("Just Twilight 3", [TagFactory("ts"), TagFactory("solo", true)], 2),
+        TagGroupFactory("Just Twilight", [TagFactory("ts"), TagFactory("solo"), TagFactory("safe"), TagFactory("pony"), TagFactory("animated", true)], 0)
     ],
     isTagGroupCreateModalOpen: false,
 }
@@ -43,6 +43,7 @@ export default createSlice({
         }
     },
     extraReducers: {
+        // Tag Suggestions
         [fetchTagSuggestionsByQueryAsync.pending]: (state, action) => {
             state.tagSuggestionsPending = true
         },
@@ -53,6 +54,18 @@ export default createSlice({
         [fetchTagSuggestionsByQueryAsync.rejected]: (state, action) => {
             state.tagSuggestionsPending = false
             state.tagSuggestions = []
+        },
+        // Image Previews
+        [fetchImagesByTagsAsync.pending]: (state, action) => {
+            state.imagePreviewsPending = true
+        },
+        [fetchImagesByTagsAsync.fulfilled]: (state, action) => {
+            state.imagePreviewsPending = false
+            state.imagePreviews = action.payload
+        },
+        [fetchImagesByTagsAsync.rejected]: (state, action) => {
+            state.imagePreviewsPending = false
+            state.imagePreviews = []
         }
     }
 })
